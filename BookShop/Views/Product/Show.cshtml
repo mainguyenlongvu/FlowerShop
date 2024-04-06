@@ -1,0 +1,47 @@
+﻿@model BookShop.Data.Dtos.ProductDto
+@{
+    ViewData["Title"] = "Detail Product Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-xxl py-5" style="margin-top: 100px">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <h1 class="display-5 mb-3">Chi tiết sản phẩm</h1>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div class="row g-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="@Model.image_url" alt="@Model.product_name" class="img-fluid">
+                            </div>
+                            <div class="col-md-6">
+                                <h2>@Model.product_name</h2>
+                                <label>Tác giá: @Model.author</label>
+                                <p>Giá: @Convert.ToDecimal(Model.price).ToString("#,##0") đồng</p>
+                                @if (Model.quantity > 0)
+                                {
+                                    <a class="text-body" class="btn btn-primary" asp-route="addcart" asp-route-productid="@Model.product_id"><i class="fa fa-shopping-bag text-primary me-2"></i>Thêm vào Giỏ</a>
+                                }
+                                else
+                                {
+
+                                    <a class="text-body" class="btn btn-warning"><i class="fa fa-shopping-bag text-primary me-2"></i>Hết hàng</a>
+                                }
+                                <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;margin-top: 50px">
+                                    <h1 class="display-5 mb-3">MÔ TẢ</h1>
+                                </div>
+                                @Html.Raw(Model.product_description)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
